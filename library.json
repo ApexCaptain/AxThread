@@ -1,0 +1,21 @@
+{
+    "name": "AxThread",
+    "version": "1.0.0",
+    "description": "Test Desc",
+    "keywords": "apple, banana",
+    "repository":
+    {
+      "type": "git",
+      "url": "https://github.com/ApexCaptain/AxThread"
+    },
+    "authors":
+    [
+      {
+        "name": "SangHun Lee",
+        "email": "ayteneve93@gmail.com"
+      }
+    ],
+    "license": "MIT",
+    "frameworks": "*",
+    "platforms": "*"
+  }
