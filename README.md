@@ -48,7 +48,7 @@ void loop() {
 ```
 This is an example printing out `Hello AxT!` text every second through [AxThread](https://github.com/ApexCaptain/AxThread). As you can see, there's no `Class` at all but only `namespace` : `Axt`. 
 
-`Axt::setInterval` function automatically creates, adds new task into its inner thread deque and returns new thread id. First argument is interval milli seconds for each repetition cycle. Second one is callback. A task, a thread, process or behavior whatever you call it, this is the actual action body that is gonna run. You can have a check more detail at the following Methods section.
+`Axt::setInterval` function automatically creates, adds new task into its inner thread deque and returns new thread id. First argument is interval milliseconds for each repetition cycle. Second one is callback. A task, a thread, process or behavior whatever you call it, this is the actual action body that is gonna run. You can have a check more detail at the following Methods section.
 
 # Methods
 
@@ -63,6 +63,24 @@ Axt::ThreadId id = Axt::setRepetition(delay, count, lambda);
 - `Count` is the number of repetition of the thread.
 - `Lambda` is literally the lambda function block to be executed at every delay for count times.
 
+### example
+Printing out text for 5 times and expires.
+```cpp
+#include <Arduino.h>
+#include <AxThread.hpp>
+
+void setup() {
+    Serial.begin(115200);
+    Axt::setRepetition(1000, 5, []() -> Axt::AxSignal {
+        Serial.println("Hello AxT!");
+        return Axt::Continue;
+    });
+}
+
+void loop() {
+    Axt::executeThreads();
+}
+```
 
 ## Signle instant Process : `setImmediate`
 ### Syntax
