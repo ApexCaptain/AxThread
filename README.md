@@ -73,7 +73,7 @@ void setup() {
     Serial.begin(115200);
     Axt::setRepetition(1000, 5, []() -> Axt::AxSignal {
         Serial.println("Hello AxT!");
-        return Axt::Continue;
+        return Axt::CONTINUE;
     });
 }
 
@@ -101,7 +101,7 @@ void setup() {
     Serial.begin(115200);
     Axt::setImmediate([]() -> Axt::AxSignal {
         Serial.println("Hello AxT!");
-        return Axt::Continue;
+        return Axt::CONTINUE;
     });
 }
 
