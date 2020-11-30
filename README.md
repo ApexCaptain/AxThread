@@ -200,7 +200,7 @@ void loop() {
 - `Axt::enabled(Axt::ThreadId)` -- Activate thread matching the given thread id.
 - `Axt::disabled(Axt::ThreadId)` -- Deactivate thread matching the given thread id.
 - `Axt::toggle(Axt::ThreadId)` -- Toggle availability of thread matching the given thread id.
-- `Axt::doesExists` -- Check whether certain thread matching the given thread id does exists and returns it. (boolean)
+- `Axt::doesExists(Axt::ThreadId)` -- Check whether certain thread matching the given thread id does exists and returns it. (boolean)
 - `Axt::getThreadCount()` -- Get the number of currently registered threads.
 
 # License
