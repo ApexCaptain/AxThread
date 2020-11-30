@@ -1,8 +1,8 @@
 {
     "name": "AxThread",
-    "version": "1.0.0",
-    "description": "Test Desc",
-    "keywords": "apple, banana",
+    "version": "1.0.1",
+    "description": "A Platform IO library for handling multiple asynchronous processes.",
+    "keywords": "async, thread, task, lambda",
     "repository":
     {
       "type": "git",
@@ -16,6 +16,6 @@
       }
     ],
     "license": "MIT",
-    "frameworks": "*",
-    "platforms": "*"
+    "frameworks": "arduino",
+    "platforms": "atmelavr"
   }
