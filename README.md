@@ -7,21 +7,21 @@
 - [License](#License)
 
 # Installation
-Type lib name and version into your platformio.ini file.
+Type lib name and version into your **platformio.ini** file.
 ```
 lib_deps =
-    apexcaptain/AxThread @ 1.0.1
+    apexcaptain/AxThread @ 1.0.3
 ```
-Current version is `1.0.1`.
+Current version is `1.0.3`.
 
 # Introduction
 There are lots of conventional ways to implement asynchronous processes in Arduino environment. But if I have to create a Thread instance for each and every single time I want to use it and also controll, stop or delete'em manually, that is not simple to me. Furthermore, total number of threads are limited and also need to set strong connection between parent and child instances. These are probably due to some sort of memory management.
 
 Instead, with [AxThread](https://github.com/ApexCaptain/AxThread), you `don't` need to...
 
-- Create thread instance.
-- Connect parent and child instance, of course.
-- Count number of threads manually.
+- _Create thread instance._
+- _Connect parent and child instance, of course._
+- _Count number of threads manually._
 
 There are one header file and one cpp file. There's no public class. You don't have to take care of inner Thread or ThreadController classes. Instead, you can use namespace. Let's take a look at following example.
 
@@ -52,16 +52,16 @@ This is an example printing out `Hello AxT!` text every second through [AxThread
 
 # Methods
 
-## Periodic process repeated a certain number of times : `setRepetition`
+## Periodic process repeating a certain number of times : `setRepetition`
 ### Syntax
 ```cpp
-Axt::ThreadId id = Axt::setRepetition(delay, count, lambda);
+Axt::ThreadId id = Axt::setRepetition(unsigned long delay, unsigned int count, Axt::AxCallback lambda);
 ```
 
 ### Parameters
-- `Delay`, the time in milliseconds(thousandths of asecond), inner thread controller delays in between executions of the specified lambda for certain count.
-- `Count` is the number of repetition of the thread.
-- `Lambda` is literally the lambda function block to be executed at every delay for count times.
+- _unsigned long_  -- `Delay`, the time in milliseconds(thousandths of asecond), inner thread controller delays in between executions of the specified **lambda** for certain **count**.
+- _unsigned int_ -- `Count` is the number of repetition of the thread.
+- _() -> Axt::AxSignal_ -- `Lambda` is literally the lambda function block to be executed at every delay for count times.
 
 ### example
 Printing out text for 5 times and expires.
@@ -85,11 +85,11 @@ void loop() {
 ## Signle instant Process : `setImmediate`
 ### Syntax
 ```cpp
-Axt::ThreadId id = Axt::setImmediate(lambda);
+Axt::ThreadId id = Axt::setImmediate(Axt::AxCallback lambda);
 ```
 
 ### Parameters
-- `Lambda` is literally the lambda function block to be executed at the very next moment. 
+- _() -> Axt::AxSignal_ -- `Lambda` is literally the lambda function block to be executed at the very next moment. 
 
 ### Example
 Printing out text and expires.
@@ -113,12 +113,12 @@ void loop() {
 ## Single Retarded Process. : `setTimeout` 
 ### Syntax
 ```cpp
-Axt::ThreadId id = Axt::setTimeout(delay, lambda);
+Axt::ThreadId id = Axt::setTimeout(unsigned long delay, Axt::AxCallback lambda);
 ```
 
 ### Parameters
-- `Delay`, the time in milliseconds(thousandths of a second), inner thread controller waits before the specified lambda is executed.
-- `Lambda` is literally the lambda function block to be executed after delay and expires.
+- _unsigned long_  -- `Delay`, the time in milliseconds(thousandths of a second), inner thread controller waits before the specified lambda is executed.
+- _() -> Axt::AxSignal_ -- `Lambda` is literally the lambda function block to be executed after delay and expires.
 
 ### Example
 Printing out text after 2 seconds.
@@ -143,12 +143,12 @@ void loop() {
 
 ### Syntax
 ```cpp
-Axt::ThreadId id = Axt::setInterval(delay, lambda);
+Axt::ThreadId id = Axt::setInterval(unsigned long delay, Axt::AxCallback lambda);
 ```
 
 ### Parameters
-- `Delay`, the time in milliseconds(thousandths of a second), inner thread controller delays in between executions of the specified lambda. 
-- `Lambda` is literally the lambda function block to be executed every delay milliseconds.
+- _unsigned long_ -- `Delay`, the time in milliseconds(thousandths of a second), inner thread controller delays in between executions of the specified lambda. 
+- _() -> Axt::AxSignal_ -- `Lambda` is literally the lambda function block to be executed every delay milliseconds.
 
 ### Example
 Printing out text every second.
@@ -159,8 +159,7 @@ Printing out text every second.
 void setup() {
     Serial.begin(115200);
 
-    /* Setting interavl thread. */
-    Axt::setInterval(1000 /* Repeat Cycle. 1000ms | 1sec */, []() -> Axt::AxSignal {
+    Axt::setInterval(1000, []() -> Axt::AxSignal {
         Serial.println("Hello AxT!");
         return Axt::CONTINUE;
     });
@@ -200,7 +199,7 @@ void loop() {
 - `Axt::enabled(Axt::ThreadId)` -- Activate thread matching the given thread id.
 - `Axt::disabled(Axt::ThreadId)` -- Deactivate thread matching the given thread id.
 - `Axt::toggle(Axt::ThreadId)` -- Toggle availability of thread matching the given thread id.
-- `Axt::doesExists(Axt::ThreadId)` -- Check whether certain thread matching the given thread id does exists and returns it. (boolean)
+- `Axt::doesExist(Axt::ThreadId)` -- Check whether certain thread matching the given thread id does exists and returns it. (boolean)
 - `Axt::getThreadCount()` -- Get the number of currently registered threads.
 
 # License

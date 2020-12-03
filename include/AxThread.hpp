@@ -25,7 +25,7 @@ namespace Axt {
     void enable(const ThreadID threadId);
     void disable(const ThreadID threadId);
     void toggle(const ThreadID threadId);
-    bool doesExists(const ThreadID threadId);
+    bool doesExist(const ThreadID threadId);
     unsigned int getThreadCount();
 
 }

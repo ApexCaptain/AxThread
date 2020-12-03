@@ -129,7 +129,7 @@ void Axt::toggle(const Axt::ThreadID threadId) {
     threadToToggle -> isEnabled = !threadToToggle -> isEnabled;
 }
 
-bool Axt::doesExists(const Axt::ThreadID threadId) {
+bool Axt::doesExist(const Axt::ThreadID threadId) {
     int threadIndexToCheck = axController -> getIndexByThreadId(threadId);
     return threadIndexToCheck != -1;
 }

@@ -1,6 +1,6 @@
 {
     "name": "AxThread",
-    "version": "1.0.1",
+    "version": "1.0.3",
     "description": "A Platform IO library for handling multiple asynchronous processes.",
     "keywords": "async, thread, task, lambda",
     "repository":
