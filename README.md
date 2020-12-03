@@ -15,15 +15,15 @@ lib_deps =
 Current version is `1.0.3`.
 
 # Introduction
-There are lots of conventional ways to implement asynchronous processes in Arduino environment. But if I have to create a Thread instance for each and every single time I want to use it and also controll, stop or delete'em manually, that is not simple to me. Furthermore, total number of threads are limited and also need to set strong connection between parent and child instances. These are probably due to some sort of memory management.
+There are lots of conventional ways to implement asynchronous processes in Arduino environment. But if I have to create a `Thread` instance every single time I want to use it and also controll, stop or delete'em manually, that is not simple to me at all. Furthermore, total number of threads are usually limited and also need to set very strong connection between parent and child instances. These are probably due to some sort of memory management.
 
-Instead, with [AxThread](https://github.com/ApexCaptain/AxThread), you `don't` need to...
+Instead, with [AxThread](https://github.com/ApexCaptain/AxThread), you `don't` need to do stuffs, such as...
 
-- _Create thread instance._
-- _Connect parent and child instance, of course._
-- _Count number of threads manually._
+- _Creating thread instance._
+- _Connecting child instance with its parent one, of course._
+- _Counting number of threads manually._
 
-There are one header file and one cpp file. There's no public class. You don't have to take care of inner Thread or ThreadController classes. Instead, you can use namespace. Let's take a look at following example.
+There are one `.hpp` and one `.cpp` file. There is **no** public class. You don't have to take care of inner Thread or ThreadController classes. Instead, you can use `namespace`.
 
 
 ```cpp
@@ -48,7 +48,7 @@ void loop() {
 ```
 This is an example printing out `Hello AxT!` text every second through [AxThread](https://github.com/ApexCaptain/AxThread). As you can see, there's no `Class` at all but only `namespace` : `Axt`. 
 
-`Axt::setInterval` function automatically creates, adds new task into its inner thread deque and returns new thread id. First argument is interval milliseconds for each repetition cycle. Second one is callback. A task, a thread, process or behavior whatever you call it, this is the actual action body that is gonna run. You can have a check more detail at the following Methods section.
+`Axt::setInterval` function automatically creates, adds new task into its inner thread deque and returns new thread id. First argument is interval milliseconds for each repetition cycle. Second one is callback. A task, a thread, a process or a behavior whatever you call it, this is the actual action body that is gonna run. You can have a check more detail at the following [Methods](#Methods) section.
 
 # Methods
 
@@ -193,14 +193,14 @@ void loop() {
 ```
 
 ### ETC
-- `Axt::clear(Axt::ThreadId)` -- Stop the thread matching the given thread id and delete it.
-- `Axt::restart(Axt::ThreadId)` -- Restart the thread matching the given thread id. If the thread is disabled, enable it.
-- `Axt::isEnabled(Axt::ThreadId)` -- Check if the thread matching the given thread id is acitvated and returns it. (boolean)
-- `Axt::enabled(Axt::ThreadId)` -- Activate thread matching the given thread id.
-- `Axt::disabled(Axt::ThreadId)` -- Deactivate thread matching the given thread id.
-- `Axt::toggle(Axt::ThreadId)` -- Toggle availability of thread matching the given thread id.
-- `Axt::doesExist(Axt::ThreadId)` -- Check whether certain thread matching the given thread id does exists and returns it. (boolean)
-- `Axt::getThreadCount()` -- Get the number of currently registered threads.
+- `void Axt::clear(Axt::ThreadId)` -- Stop the thread matching the given thread id and delete it.
+- `void Axt::restart(Axt::ThreadId)` -- Restart the thread. If the thread is disabled, enable it.
+- `bool Axt::isEnabled(Axt::ThreadId)` -- Check if the thread is acitvated and returns it. (boolean)
+- `void Axt::enable(Axt::ThreadId)` -- Activate thread.
+- `void Axt::disable(Axt::ThreadId)` -- Deactivate thread.
+- `void Axt::toggle(Axt::ThreadId)` -- Toggle availability of thread.
+- `bool Axt::doesExist(Axt::ThreadId)` -- Check whether certain thread does exist and returns the result. (boolean)
+- `unsigned int Axt::getThreadCount()` -- Get the number of currently registered threads.
 
 # License
     MIT License
